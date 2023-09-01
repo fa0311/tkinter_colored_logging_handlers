@@ -90,15 +90,13 @@ class LightStyleScheme(StyleSchemeBase, FontScheme, ColorSchemeLight):
 
 
 class LoggingHandler(Handler):
-    SCHEME = StyleScheme
     END = "end"
 
-    def __init__(self, box, light=False):
+    def __init__(self, box, scheme=StyleScheme):
         super().__init__()
         self.box = box
-        if light:
-            self.SCHEME = LightStyleScheme
-        for style in self.SCHEME.to_dict().values():
+        self.scheme = scheme
+        for style in self.scheme.to_dict().values():
             self.box.tag_config(style[0], **style[2])
 
     def emit(self, record: LogRecord) -> None:
@@ -113,7 +111,7 @@ class LoggingHandler(Handler):
                 if code == "0":
                     tag = []
                 else:
-                    for style in self.SCHEME.to_dict().values():
+                    for style in self.scheme.to_dict().values():
                         if code == style[1]:
                             tag.append(style[0])
             self.box.insert(self.END, text.split("m", 1)[-1], tag)
