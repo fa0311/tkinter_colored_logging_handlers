@@ -92,10 +92,10 @@ class LightStyleScheme(StyleSchemeBase, FontScheme, ColorSchemeLight):
 class LoggingHandler(Handler):
     END = "end"
 
-    def __init__(self, box, scheme=StyleScheme):
+    def __init__(self, box, scheme=None):
         super().__init__()
         self.box = box
-        self.scheme = scheme
+        self.scheme = scheme or StyleScheme
         for style in self.scheme.to_dict().values():
             self.box.tag_config(style[0], **style[2])
 
