@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 
 NAME = "tkinter_colored_logging_handlers"
-VERSION = "0.0.2"
+VERSION = "0.0.3"
 PYTHON_REQUIRES = ">=3.6"
 REQUIRES = []
 
